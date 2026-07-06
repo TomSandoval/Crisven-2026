@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './SobreNosotros.module.css'
+import BackgroundImage from '../../../../public/assets/background-about-us.png'
+
 
 export default function SobreNosotros() {
   return (
@@ -17,7 +19,7 @@ export default function SobreNosotros() {
 
       <div className={styles.imageWrapper}>
         <Image
-          src="/images/sobre-nosotros.jpg"
+          src={BackgroundImage}
           alt="Técnico instalando ventana Crisven en motorhome"
           fill
           className={styles.image}

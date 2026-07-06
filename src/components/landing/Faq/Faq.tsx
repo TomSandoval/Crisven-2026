@@ -1,17 +1,17 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import styles from './Faq.module.css'
-import { FaqItem } from '@/types'
+import { useState } from "react";
+import styles from "./Faq.module.css";
+import { FaqItem } from "@/types";
 
 interface FAQProps {
-  items: FaqItem[]
+  items: FaqItem[];
 }
 
 export default function FAQ({ items }: FAQProps) {
-  const [abierto, setAbierto] = useState<string | null>(null)
+  const [abierto, setAbierto] = useState<string | null>(null);
 
-  if (items.length === 0) return null
+  if (items.length === 0) return null;
 
   return (
     <section id="faq" className={styles.section}>
@@ -28,7 +28,9 @@ export default function FAQ({ items }: FAQProps) {
                 aria-expanded={abierto === item.id}
               >
                 <span>{item.pregunta}</span>
-                <span className={`${styles.icon} ${abierto === item.id ? styles.iconOpen : ''}`}>
+                <span
+                  className={`${styles.icon} ${abierto === item.id ? styles.iconOpen : ""}`}
+                >
                   +
                 </span>
               </button>
@@ -43,5 +45,5 @@ export default function FAQ({ items }: FAQProps) {
         </div>
       </div>
     </section>
-  )
+  );
 }

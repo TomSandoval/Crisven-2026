@@ -1,6 +1,7 @@
 .section {
   background-color: #000;
-  padding-bottom: 100px;
+  padding-bottom: 40px;
+  margin-top: 20px;
 }
 
 .container {
@@ -34,7 +35,7 @@
   text-transform: uppercase;
   letter-spacing: -0.02em;
   color: #fff;
-  margin-bottom: 48px;
+  margin-bottom: 20px;
 }
 
 .list {

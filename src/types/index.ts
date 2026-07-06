@@ -84,7 +84,7 @@ export type PaginaPrincipal = {
 
 export type LogoMarca = {
   id: string
-  imagen_url: string
+  imagen_url: any
   nombre: string | null
   orden: number
   created_at: string

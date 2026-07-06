@@ -1,5 +1,5 @@
 .hero {
-  margin-top: 80px;
+  margin-top: 77px;
   position: relative;
   min-height: 80vh;
   display: flex;
@@ -41,7 +41,7 @@
 .cta {
   display: inline-flex;
   align-items: center;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
