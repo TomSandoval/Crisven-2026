@@ -5,8 +5,6 @@
 export type Categoria = {
   id: string
   nombre: string
-  orden: number
-  created_at: string
 }
 
 export type Subcategoria = {

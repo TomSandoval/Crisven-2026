@@ -19,18 +19,28 @@ interface LogoItem {
   nombre: string | null
 }
 
+interface CategoriaItem {
+  id: string
+  nombre: string
+  orden: number
+}
+
 interface PaginaPrincipalProps {
   imagenPrincipalUrl: string | null
   imagenSecundariaUrl: string | null
   logos: LogoItem[]
   faqItems: FaqItem[]
+  categoriasIniciales: CategoriaItem[]  // agregás esto
 }
+
+
 
 export default function AdminPrincipalClient({
   imagenPrincipalUrl,
   imagenSecundariaUrl,
   logos: logosIniciales,
   faqItems: faqIniciales,
+  categoriasIniciales
 }: PaginaPrincipalProps) {
   const supabase = createClient()
 
@@ -40,6 +50,8 @@ export default function AdminPrincipalClient({
   const [faq, setFaq] = useState<FaqItem[]>(faqIniciales)
   const [guardando, setGuardando] = useState(false)
   const [mensaje, setMensaje] = useState<string | null>(null)
+  const [categorias, setCategorias] = useState<CategoriaItem[]>(categoriasIniciales)
+  const [nuevaCategoria, setNuevaCategoria] = useState('')
 
   const inputPrincipalRef = useRef<HTMLInputElement>(null)
   const inputSecundariaRef = useRef<HTMLInputElement>(null)
@@ -104,6 +116,27 @@ export default function AdminPrincipalClient({
     setFaq(faq.filter((f) => f.id !== id))
   }
 
+
+  async function handleAgregarCategoria() {
+    if (!nuevaCategoria.trim()) return
+    const { data } = await supabase
+      .from('categorias')
+      .insert({ nombre: nuevaCategoria.trim(), orden: categorias.length })
+      .select()
+      .single()
+    if (data) {
+      setCategorias([...categorias, data])
+      setNuevaCategoria('')
+    }
+  }
+
+  async function handleEliminarCategoria(id: string) {
+    const confirmar = window.confirm('¿Seguro? Se desvinculará de todos los productos asociados.')
+    if (!confirmar) return
+    await supabase.from('categorias').delete().eq('id', id)
+    setCategorias(categorias.filter((c) => c.id !== id))
+  }
+
   async function handleGuardar() {
     setGuardando(true)
     setMensaje(null)
@@ -118,6 +151,12 @@ export default function AdminPrincipalClient({
     for (const item of faq) {
       await supabase.from('faq').update({ pregunta: item.pregunta, respuesta: item.respuesta }).eq('id', item.id)
     }
+
+    // Guardar categorias
+    for (const cat of categorias) {
+      await supabase.from('categorias').update({ nombre: cat.nombre }).eq('id', cat.id)
+    }
+
 
     setGuardando(false)
     setMensaje('Cambios guardados correctamente.')
@@ -167,6 +206,52 @@ export default function AdminPrincipalClient({
           <input ref={inputSecundariaRef} type="file" accept="image/*" onChange={handleImagenSecundaria} className={styles.inputHidden} />
         </div>
 
+        <h2 className={styles.subtitulo}>Categorías</h2>
+        <div className={styles.faqList}>
+          {categorias.map((cat) => (
+            <div key={cat.id} className={styles.faqItem}>
+              <div className={styles.faqInputs}>
+                <input
+                  type="text"
+                  value={cat.nombre}
+                  onChange={(e) =>
+                    setCategorias(categorias.map((c) =>
+                      c.id === cat.id ? { ...c, nombre: e.target.value } : c
+                    ))
+                  }
+                  className={styles.faqInput}
+                />
+              </div>
+              <button
+                className={styles.faqEliminar}
+                onClick={() => handleEliminarCategoria(cat.id)}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="3,6 5,6 21,6" /><path d="M19,6l-1,14H6L5,6" />
+                  <path d="M10,11v6" /><path d="M14,11v6" />
+                  <path d="M9,6V4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1V6" />
+                </svg>
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.faqItem}>
+          <div className={styles.faqInputs}>
+            <input
+              type="text"
+              placeholder="Nueva categoría"
+              value={nuevaCategoria}
+              onChange={(e) => setNuevaCategoria(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleAgregarCategoria()}
+              className={styles.faqInput}
+            />
+          </div>
+          <button className={styles.faqEliminar} onClick={handleAgregarCategoria}>
+            +
+          </button>
+        </div>
+
         {/* Logos marcas */}
         <h2 className={styles.subtitulo}>Sección clientes</h2>
         <div className={styles.logosGrid}>
@@ -208,8 +293,8 @@ export default function AdminPrincipalClient({
               </div>
               <button className={styles.faqEliminar} onClick={() => handleEliminarFaq(item.id)}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="3,6 5,6 21,6"/><path d="M19,6l-1,14H6L5,6"/><path d="M10,11v6"/><path d="M14,11v6"/>
-                  <path d="M9,6V4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1V6"/>
+                  <polyline points="3,6 5,6 21,6" /><path d="M19,6l-1,14H6L5,6" /><path d="M10,11v6" /><path d="M14,11v6" />
+                  <path d="M9,6V4a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1V6" />
                 </svg>
               </button>
             </div>

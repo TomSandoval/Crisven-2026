@@ -9,10 +9,14 @@ function WhatsappIcon() {
   )
 }
 
-function FacebookIcon() {
+function InstagramIcon() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="22" height="22" viewBox="0 0 32 32" id="Camada_1" version="1.1">
+      <g>
+        <path d="M22.3,8.4c-0.8,0-1.4,0.6-1.4,1.4c0,0.8,0.6,1.4,1.4,1.4c0.8,0,1.4-0.6,1.4-1.4C23.7,9,23.1,8.4,22.3,8.4z" />
+        <path d="M16,10.2c-3.3,0-5.9,2.7-5.9,5.9s2.7,5.9,5.9,5.9s5.9-2.7,5.9-5.9S19.3,10.2,16,10.2z M16,19.9c-2.1,0-3.8-1.7-3.8-3.8   c0-2.1,1.7-3.8,3.8-3.8c2.1,0,3.8,1.7,3.8,3.8C19.8,18.2,18.1,19.9,16,19.9z" />
+        <path d="M20.8,4h-9.5C7.2,4,4,7.2,4,11.2v9.5c0,4,3.2,7.2,7.2,7.2h9.5c4,0,7.2-3.2,7.2-7.2v-9.5C28,7.2,24.8,4,20.8,4z M25.7,20.8   c0,2.7-2.2,5-5,5h-9.5c-2.7,0-5-2.2-5-5v-9.5c0-2.7,2.2-5,5-5h9.5c2.7,0,5,2.2,5,5V20.8z" />
+      </g>
     </svg>
   )
 }
@@ -29,10 +33,10 @@ export default function Footer() {
               <p className={styles.logoSub}>Windows creation</p>
             </div>
             <div className={styles.socials}>
-              <Link href="https://facebook.com" target="_blank" aria-label="Facebook" className={styles.socialLink}>
-                <FacebookIcon />
+              <Link href="https://www.instagram.com/crisvenventanas/" target="_blank" aria-label="Instagram" className={styles.socialLink}>
+                <InstagramIcon />
               </Link>
-              <Link href="https://wa.me/5491100000000" target="_blank" aria-label="WhatsApp" className={styles.socialLink}>
+              <Link href="https://wa.me/5491151314617" target="_blank" aria-label="WhatsApp" className={styles.socialLink}>
                 <WhatsappIcon />
               </Link>
             </div>

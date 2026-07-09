@@ -43,6 +43,39 @@
   font-weight: 600;
 }
 
+.subLista {
+  list-style: none;
+  padding-left: 30px;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.subItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 5px 0;
+  font-size: 13px;
+  color: #888;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: color 0.15s;
+}
+
+.subItem:hover {
+  color: #000;
+}
+
+.subActivo {
+  color: #000;
+  font-weight: 600;
+}
+
 /* La línea decorativa a la izquierda (igual al diseño de Figma) */
 .linea {
   display: block;

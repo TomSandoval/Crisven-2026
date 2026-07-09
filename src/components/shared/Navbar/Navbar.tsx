@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import styles from './Navbar.module.css'
+import { Categoria } from '@/types'
 
 
 
@@ -17,15 +18,13 @@ const navLinks = [
   { label: 'Productos', href: '/productos' },
 ]
 
-const categorias = [
-  { label: 'Línea Levadizas', href: '/productos?categoria=levadizas' },
-  { label: 'Línea Blackout', href: '/productos?categoria=blackout' },
-  { label: 'Línea Fija', href: '/productos?categoria=fija' },
-]
+interface NavbarProps {
+  categorias: Categoria[]
+}
 
 
 
-export default function Navbar() {
+export default function Navbar({categorias}: NavbarProps) {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
   const isAdmin = pathname?.startsWith('/admin')
@@ -63,8 +62,8 @@ export default function Navbar() {
         <div className={styles.categoriesBar}>
           <div className={styles.container}>
             {categorias.map((cat) => (
-              <Link key={cat.href} href={cat.href} className={styles.categoryLink}>
-                {cat.label}
+              <Link key={cat.nombre} href="/productos" className={styles.categoryLink}>
+                {cat.nombre}
               </Link>
             ))}
           </div>

@@ -5,6 +5,7 @@ import Navbar from "@/components/shared/Navbar/Navbar";
 import Footer from "@/components/shared/Footer/Footer";
 import WhatsappButton from "@/components/shared/WhatsappButton/WhatsappButton";
 import localFont from "next/font/local";
+import { createClient } from "@/lib/supabase/client";
 
 const openSans = Open_Sans({
   subsets: ["latin"],
@@ -26,11 +27,21 @@ export const metadata: Metadata = {
     "Fabricamos ventanas y aberturas para motorhomes, casas rodantes y carrocerías. Calidad, stock amplio y diseños a medida.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
+   const supabase = await createClient()
+
+  const { data: categorias } = await supabase
+    .from('categorias')
+    .select('id, nombre')
+    .order('orden')
+    .limit(3)
+
+
   return (
     <html
       lang="es"
@@ -38,7 +49,7 @@ export default function RootLayout({
       className={rokkitt.variable}
     >
       <body>
-        <Navbar />
+        <Navbar categorias={categorias ?? []}/>
         <main>{children}</main>
         <Footer />
         <WhatsappButton />

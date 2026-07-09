@@ -8,10 +8,12 @@ export default async function AdminPage() {
     { data: paginaPrincipal },
     { data: logos },
     { data: faq },
+    { data: categorias },
   ] = await Promise.all([
     supabase.from('pagina_principal').select('*').single(),
     supabase.from('logos_marcas').select('*').order('orden'),
     supabase.from('faq').select('*').order('orden'),
+    supabase.from('categorias').select('*').order('orden'),
   ])
 
   return (
@@ -20,6 +22,7 @@ export default async function AdminPage() {
       imagenSecundariaUrl={paginaPrincipal?.imagen_secundaria_url ?? null}
       logos={logos ?? []}
       faqItems={faq ?? []}
+      categoriasIniciales={categorias ?? []}
     />
   )
 }

@@ -4,22 +4,26 @@ import { useState } from 'react'
 import styles from './ProductosClient.module.css'
 import FiltroCategoria from './FiltroCategoria'
 import TarjetaProducto from './TarjetaProducto'
-import { Categoria, ProductoEnGrilla } from '@/types'
+import { Categoria, ProductoEnGrilla, Subcategoria } from '@/types'
 
 const POR_PAGINA = 12
 
 interface ProductosClientProps {
-  categorias: Categoria[]
   productos: ProductoEnGrilla[]
+  categorias: Categoria[]
+  subcategorias: Subcategoria[]
 }
 
-export default function ProductosClient({ categorias, productos }: ProductosClientProps) {
+export default function ProductosClient({ categorias, subcategorias, productos }: ProductosClientProps) {
   const [categoriaActiva, setCategoriaActiva] = useState<string | null>(null)
+  const [subcategoriaActiva, setSubcategoriaActiva] = useState<string | null>(null)
   const [pagina, setPagina] = useState(1)
 
-  const productosFiltrados = categoriaActiva
-    ? productos.filter((p) => p.categoria_id === categoriaActiva)
-    : productos
+  const productosFiltrados = productos.filter((p) => {
+    if (subcategoriaActiva) return p.subcategoria_id === subcategoriaActiva
+    if (categoriaActiva) return p.categoria_id === categoriaActiva
+    return true
+  })
 
   const totalPaginas = Math.ceil(productosFiltrados.length / POR_PAGINA)
   const inicio = (pagina - 1) * POR_PAGINA
@@ -27,16 +31,25 @@ export default function ProductosClient({ categorias, productos }: ProductosClie
 
   function cambiarCategoria(id: string | null) {
     setCategoriaActiva(id)
+    setSubcategoriaActiva(null)
+    setPagina(1)
+  }
+
+  function cambiarSubcategoria(id: string | null) {
+    setSubcategoriaActiva(id)
     setPagina(1)
   }
 
   return (
     <div className={styles.page}>
-      <aside className={styles.sidebar}>
+       <aside className={styles.sidebar}>
         <FiltroCategoria
           categorias={categorias}
+          subcategorias={subcategorias}
           categoriaActiva={categoriaActiva}
-          onChange={cambiarCategoria}
+          subcategoriaActiva={subcategoriaActiva}
+          onCategoriaChange={cambiarCategoria}
+          onSubcategoriaChange={cambiarSubcategoria}
         />
       </aside>
 

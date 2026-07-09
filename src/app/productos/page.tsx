@@ -11,23 +11,15 @@ export const metadata = {
 export default async function ProductosPage() {
   const supabase = await createClient()
 
-  const [{ data: categorias }, { data: productos }] = await Promise.all([
-    supabase
-      .from('categorias')
-      .select('*')
-      .order('orden'),
+  const [{ data: categorias }, { data: subcategorias }, { data: productos }] = await Promise.all([
+    supabase.from('categorias').select('*').order('orden'),
+    supabase.from('subcategorias').select('*').order('orden'),
     supabase
       .from('productos')
-      .select(`
-      *,
-      categorias(*),
-      subcategorias(*),
-      producto_imagenes(*)
-    `)
+      .select(`*, categorias(*), subcategorias(*), producto_imagenes(*)`)
       .order('orden'),
   ])
 
-  // Mapeamos para extraer la imagen principal
   const productosMapeados = (productos ?? []).map((p) => ({
     ...p,
     imagen_principal: p.producto_imagenes?.find((img: any) => img.es_principal) ?? p.producto_imagenes?.[0] ?? null,
@@ -36,6 +28,7 @@ export default async function ProductosPage() {
   return (
     <ProductosClient
       categorias={categorias ?? []}
+      subcategorias={subcategorias ?? []}
       productos={productosMapeados}
     />
   )

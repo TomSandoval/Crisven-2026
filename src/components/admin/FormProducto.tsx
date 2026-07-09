@@ -98,14 +98,20 @@ export default function FormProducto({ categorias, subcategorias, producto }: Pr
     }
 
     // Si eligió crear subcategoría nueva, la creamos
-    let subcategoriaFinal = subcategoriaId
+    let subcategoriaFinal = subcategoriaId  // ← declarada acá arriba
+
+    // Pegá esto justo antes del if de subcategoría
+    console.log('subcategoriaId:', subcategoriaId)
+    console.log('nuevaSubcategoria:', nuevaSubcategoria)
+    console.log('categoriaFinal:', categoriaFinal)
+
     if (subcategoriaId === '__nueva__') {
       if (!nuevaSubcategoria.trim()) {
         setError('Escribí el nombre de la nueva subcategoría.')
         setGuardando(false)
         return
       }
-      const { data: subCreada } = await supabase
+      const { data: subCreada, error: subError } = await supabase
         .from('subcategorias')
         .insert({
           nombre: nuevaSubcategoria.trim(),
@@ -115,12 +121,15 @@ export default function FormProducto({ categorias, subcategorias, producto }: Pr
         .select()
         .single()
 
+      console.log('subCreada:', subCreada)
+      console.log('subError:', subError)
+
       if (!subCreada) {
         setError('Error al crear la subcategoría.')
         setGuardando(false)
         return
       }
-      subcategoriaFinal = subCreada.id
+      subcategoriaFinal = subCreada.id  // ← se actualiza acá
     }
 
     // El resto del guardado igual que antes pero usando categoriaFinal
@@ -130,7 +139,7 @@ export default function FormProducto({ categorias, subcategorias, producto }: Pr
       await supabase.from('productos').update({
         nombre,
         categoria_id: categoriaFinal || null,
-        subcategoria_id: subcategoriaId || null,
+        subcategoria_id: subcategoriaFinal || null,
         descripcion: descripcion || null,
       }).eq('id', producto.id)
 
@@ -139,7 +148,7 @@ export default function FormProducto({ categorias, subcategorias, producto }: Pr
       const { data } = await supabase.from('productos').insert({
         nombre,
         categoria_id: categoriaFinal || null,
-        subcategoria_id: subcategoriaId || null,
+        subcategoria_id: subcategoriaFinal || null,
         descripcion: descripcion || null,
         orden: 0,
       }).select().single()
@@ -210,7 +219,10 @@ export default function FormProducto({ categorias, subcategorias, producto }: Pr
               type="text"
               placeholder="Subcategoría (opcional)"
               value={nuevaSubcategoria}
-              onChange={(e) => setNuevaSubcategoria(e.target.value)}
+              onChange={(e) => {
+                setNuevaSubcategoria(e.target.value)
+                setSubcategoriaId(e.target.value ? '__nueva__' : '')
+              }}
               className={styles.input}
             />
           ) : (

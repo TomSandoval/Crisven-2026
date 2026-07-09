@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import styles from './WhatsappButton.module.css'
 
-const WHATSAPP_NUMBER = '5491100000000'
+const WHATSAPP_NUMBER = '5491151314617'
 const WHATSAPP_MESSAGE = 'Hola! Me contacto desde la web de Crisven.'
 
 export default function WhatsappButton() {
