@@ -1,0 +1,88 @@
+.filtro {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.titulo {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: -0.01em;
+}
+
+.lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 6px 0;
+  font-size: 14px;
+  color: #666;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.15s;
+  font-family: inherit;
+}
+
+.item:hover {
+  color: #000;
+}
+
+.activo {
+  color: #000;
+  font-weight: 600;
+}
+
+/* La línea decorativa a la izquierda (igual al diseño de Figma) */
+.linea {
+  display: block;
+  width: 20px;
+  height: 1px;
+  background-color: #ccc;
+  flex-shrink: 0;
+  transition: background-color 0.15s;
+}
+
+.activo .linea {
+  background-color: #000;
+}
+
+.item:hover .linea {
+  background-color: #000;
+}
+
+/* Mobile: mostrar horizontal */
+@media (max-width: 768px) {
+  .lista {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .item {
+    padding: 6px 12px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+
+  .activo {
+    border-color: #000;
+    background-color: #000;
+    color: #fff;
+  }
+
+  .linea {
+    display: none;
+  }
+}

@@ -1,0 +1,178 @@
+.page {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.titulo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+
+/* Grid de inputs 2 columnas */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 32px;
+}
+
+.input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  font-size: 14px;
+  color: #000;
+  font-family: inherit;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.15s;
+  appearance: none;
+}
+
+.input:focus {
+  border-color: #000;
+}
+
+.input::placeholder {
+  color: #bbb;
+}
+
+.input:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Fotos */
+.fotosLabel {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000;
+}
+
+.fotosGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.fotoItem {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  background-color: #f5f5f5;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.fotoItem:hover {
+  border-color: #999;
+}
+
+.fotoPrincipal {
+  border-color: #000;
+}
+
+.fotoImg {
+  object-fit: contain;
+  padding: 8px;
+}
+
+.fotoEliminar {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #e53e3e;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  padding: 0;
+}
+
+.badgePrincipal {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  color: #fff;
+  font-size: 10px;
+  text-align: center;
+  padding: 3px 0;
+  letter-spacing: 0.05em;
+}
+
+.inputHidden {
+  display: none;
+}
+
+/* Botón + */
+.btnAgregar {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.15s;
+}
+
+.btnAgregar:hover {
+  background-color: #222;
+}
+
+.error {
+  font-size: 13px;
+  color: #e53e3e;
+  background-color: #fff5f5;
+  border: 1px solid #fed7d7;
+  border-radius: 4px;
+  padding: 10px 14px;
+}
+
+/* Guardar */
+.btnGuardar {
+  width: 100%;
+  background-color: #25a244;
+  color: #fff;
+  border: none;
+  padding: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: inherit;
+  transition: background-color 0.2s;
+}
+
+.btnGuardar:hover {
+  background-color: #1e8f3b;
+}
+
+.btnGuardar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}

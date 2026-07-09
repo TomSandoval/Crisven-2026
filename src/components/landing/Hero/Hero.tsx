@@ -1,19 +1,26 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './Hero.module.css'
-import BackgroundImage from '../../../../public/assets/background-home.jpg'
 
-export default function Hero() {
+interface HeroProps {
+  imagenUrl: string | null
+}
+
+export default function Hero({ imagenUrl }: HeroProps) {
   return (
     <section className={styles.hero}>
       <div className={styles.bgWrapper}>
-        <Image
-          src={BackgroundImage}
-          alt="Ventanas Crisven instaladas en motorhome"
-          fill
-          priority
-          className={styles.bgImage}
-        />
+        {imagenUrl ? (
+          <Image
+            src={imagenUrl}
+            alt="Ventanas Crisven instaladas en motorhome"
+            fill
+            priority
+            className={styles.bgImage}
+          />
+        ) : (
+          <div className={styles.bgPlaceholder} />
+        )}
         <div className={styles.overlay} />
       </div>
 
@@ -23,7 +30,7 @@ export default function Hero() {
           Fábrica de ventanas para vehículos recreativos y carrocerías
         </h1>
         <Link href="/productos" className={styles.cta}>
-          Conocé nuestros productos
+          Conoce nuestros productos
         </Link>
       </div>
     </section>

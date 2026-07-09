@@ -14,7 +14,7 @@ export default function Marquee({
   children,
   pauseOnHover = false,
   reverse = false,
-  speed = 30,
+  speed = 5,
   className = '',
 }: MarqueeProps) {
   return (

@@ -1,0 +1,118 @@
+.page {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  min-height: 100vh;
+  padding-top: 100px;
+  background-color: #fff;
+  color: #000;
+}
+
+.sidebar {
+  border-right: 1px solid #e5e5e5;
+  padding: 40px 24px;
+  position: sticky;
+  top: 100px;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.main {
+  padding: 40px 48px 80px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 24px;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: #999;
+  font-size: 15px;
+}
+
+/* Paginado */
+.paginado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 56px;
+}
+
+.paginaBtn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid #e5e5e5;
+  font-size: 14px;
+  color: #666;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s, color 0.15s, background-color 0.15s;
+}
+
+.paginaBtn:hover:not(:disabled) {
+  border-color: #000;
+  color: #000;
+}
+
+.paginaBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.paginaBtnActivo {
+  background-color: #000;
+  border-color: #000;
+  color: #fff;
+}
+
+.paginaBtnActivo:hover {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    grid-template-columns: 1fr;
+    padding-top: 80px;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 24px;
+  }
+
+  .main {
+    padding: 24px 24px 64px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

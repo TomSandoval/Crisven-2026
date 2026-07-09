@@ -1,0 +1,217 @@
+.page {
+  max-width: 780px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.titulo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+
+.subtitulo {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  margin-top: 12px;
+}
+
+.seccion {
+  width: 100%;
+}
+
+.imagePreview {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  background-color: #f5f5f5;
+  border: 1px dashed #ccc;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+
+.imagePreview:hover {
+  border-color: #000;
+}
+
+.imagen {
+  object-fit: cover;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.inputHidden {
+  display: none;
+}
+
+.logosGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.logoItem {
+  position: relative;
+  width: 120px;
+  height: 70px;
+  background-color: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.logoImg {
+  object-fit: contain;
+  padding: 8px;
+}
+
+.logoEliminar {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #e53e3e;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faqItem {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  padding: 12px 16px;
+}
+
+.faqInputs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.faqInput {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding: 6px 0;
+  font-size: 14px;
+  color: #000;
+  font-family: inherit;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+
+.faqInput:focus {
+  border-color: #000;
+}
+
+.faqInput::placeholder {
+  color: #bbb;
+}
+
+.faqEliminar {
+  width: 40px;
+  height: 40px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.15s;
+}
+
+.faqEliminar:hover {
+  background-color: #333;
+}
+
+.btnAgregar {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.15s;
+}
+
+.btnAgregar:hover {
+  background-color: #222;
+}
+
+.btnGuardar {
+  width: 100%;
+  background-color: #25a244;
+  color: #fff;
+  border: none;
+  padding: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: inherit;
+  margin-top: 16px;
+  transition: background-color 0.2s;
+}
+
+.btnGuardar:hover {
+  background-color: #1e8f3b;
+}
+
+.btnGuardar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mensaje {
+  font-size: 13px;
+  color: #25a244;
+  font-weight: 500;
+}

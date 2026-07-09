@@ -1,10 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './SobreNosotros.module.css'
-import BackgroundImage from '../../../../public/assets/background-about-us.png'
 
+interface SobreNosotrosProps {
+  imagenUrl: string | null
+}
 
-export default function SobreNosotros() {
+export default function SobreNosotros({ imagenUrl }: SobreNosotrosProps) {
   return (
     <section id="sobre-nosotros" className={styles.section}>
       <div className={styles.container}>
@@ -18,12 +20,16 @@ export default function SobreNosotros() {
       </div>
 
       <div className={styles.imageWrapper}>
-        <Image
-          src={BackgroundImage}
-          alt="Técnico instalando ventana Crisven en motorhome"
-          fill
-          className={styles.image}
-        />
+        {imagenUrl ? (
+          <Image
+            src={imagenUrl}
+            alt="Técnico instalando ventana Crisven en motorhome"
+            fill
+            className={styles.image}
+          />
+        ) : (
+          <div className={styles.imagePlaceholder} />
+        )}
         <div className={styles.imageOverlay} />
         <Link href="/#contacto" className={styles.imageLink}>
           Conocé más

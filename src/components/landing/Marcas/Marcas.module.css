@@ -5,8 +5,7 @@
 }
 
 .container {
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: 100vw;
   margin-bottom: 20px;
 }
 
@@ -42,6 +41,8 @@
 .marquee {
   mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  display: flex;
+  justify-content: center;
 }
 
 .logo {
