@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   title: "Crisven | Ventanas para vehículos recreativos y carrocerías",
   description:
     "Fabricamos ventanas y aberturas para motorhomes, casas rodantes y carrocerías. Calidad, stock amplio y diseños a medida.",
+  icons: {
+    icon: '/favicon.png'
+  }
 };
 
 export default async function RootLayout({
