@@ -16,7 +16,7 @@ export default function DetalleProductoClient({ producto, similares }: Props) {
   const imagenes = producto.producto_imagenes ?? []
   const [imagenActiva, setImagenActiva] = useState(0)
 
-  const whatsappUrl = `https://wa.me/5491100000000?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/5491151314617?text=${encodeURIComponent(
     `Hola! Me interesa el producto: ${producto.nombre}`
   )}`
 
