@@ -67,10 +67,6 @@ export default function AdminGaleriaClient({ fotos: fotosIniciales }: { fotos: G
     setFotos(fotos.map((f) => f.id === id ? { ...f, descripcion: valor } : f))
   }
 
-  async function handleGuardarDescripcion(id: string, descripcion: string) {
-    await supabase.from('galeria').update({ descripcion }).eq('id', id)
-  }
-
   return (
     <div className={styles.page}>
       <div className={styles.header}>
@@ -122,7 +118,6 @@ export default function AdminGaleriaClient({ fotos: fotosIniciales }: { fotos: G
                 placeholder="Descripción (opcional)"
                 value={foto.descripcion ?? ''}
                 onChange={(e) => handleDescripcion(foto.id, e.target.value)}
-                onBlur={(e) => handleGuardarDescripcion(foto.id, e.target.value)}
                 className={styles.inputDescripcion}
               />
             </div>
