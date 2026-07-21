@@ -18,7 +18,6 @@ export default async function HomePage() {
     supabase.from('faq').select('*').order('orden'),
   ])
 
-  console.log(paginaPrincipal.imagen_principal_url)
   return (
     <>
       <Hero

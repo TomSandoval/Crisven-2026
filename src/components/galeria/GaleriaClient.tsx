@@ -13,7 +13,6 @@ interface GaleriaClientProps {
 
 export default function GaleriaClient({ fotos, titulo, descripcion }: GaleriaClientProps) {
   const [fotoActiva, setFotoActiva] = useState<GaleriaItem | null>(null)
-  console.log(fotos)
 
   function handleAnterior() {
     if (!fotoActiva) return

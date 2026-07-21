@@ -10,7 +10,7 @@ export default async function AdminGaleriaPage() {
     .select('*')
     .order('orden')
 
-  console.log(fotos)
+
 
   return (
     <AdminPanelLayout>

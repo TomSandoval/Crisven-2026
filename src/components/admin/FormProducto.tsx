@@ -104,11 +104,6 @@ export default function FormProducto({ categorias, subcategorias, producto }: Pr
     // Si eligió crear subcategoría nueva, la creamos
     let subcategoriaFinal = subcategoriaId  // ← declarada acá arriba
 
-    // Pegá esto justo antes del if de subcategoría
-    console.log('subcategoriaId:', subcategoriaId)
-    console.log('nuevaSubcategoria:', nuevaSubcategoria)
-    console.log('categoriaFinal:', categoriaFinal)
-
     if (subcategoriaId === '__nueva__') {
       if (!nuevaSubcategoria.trim()) {
         setError('Escribí el nombre de la nueva subcategoría.')
