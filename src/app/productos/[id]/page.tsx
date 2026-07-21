@@ -31,24 +31,28 @@ export default async function DetalleProductoPage({ params }: Props) {
   const { data: similares } = await supabase
     .from('productos')
     .select(`
-      *,
-      categorias(*),
-      subcategorias(*),
-      producto_imagenes!inner(*)
-    `)
+    *,
+    categorias(*),
+    subcategorias(*),
+    producto_imagenes(*)
+  `)
     .eq('categoria_id', producto.categoria_id)
-    .eq('producto_imagenes.es_principal', true)
     .neq('id', id)
     .order('orden')
     .limit(5)
 
+  const similaresMapeados = (similares ?? []).map((p) => ({
+    ...p,
+    imagen_principal: p.producto_imagenes?.find((img: any) => img.es_principal) ?? p.producto_imagenes?.[0] ?? null,
+  }))
 
 
-  
+
+
   return (
     <DetalleProductoClient
       producto={producto}
-      similares={similares ?? []}
+      similares={similaresMapeados ?? []}
     />
   )
 }

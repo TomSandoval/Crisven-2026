@@ -5,6 +5,7 @@ import Image from 'next/image'
 import AdminPanelLayout from '@/components/admin/AdminPanelLayout'
 import styles from '@/app/admin/(protected)/page.module.css'
 import { createClient } from '@/lib/supabase/client'
+import { comprimirImagen } from '@/lib/comprimirImagen'
 
 interface FaqItem {
   id: string
@@ -26,6 +27,11 @@ interface CategoriaItem {
 }
 
 interface PaginaPrincipalProps {
+  heroTitulo: string
+  sobreNosotrosTitulo: string
+  sobreNosotrosDescripcion: string
+  galeriaTitulo: string
+  galeriaDescripcion: string
   imagenPrincipalUrl: string | null
   imagenSecundariaUrl: string | null
   logos: LogoItem[]
@@ -40,10 +46,20 @@ export default function AdminPrincipalClient({
   imagenSecundariaUrl,
   logos: logosIniciales,
   faqItems: faqIniciales,
-  categoriasIniciales
+  categoriasIniciales,
+  heroTitulo: heroTituloInicial,
+  sobreNosotrosTitulo: sobreNosotrosTituloInicial,
+  sobreNosotrosDescripcion: sobreNosotrosDescripcionInicial,
+  galeriaTitulo: galeriaTituloInicial,
+  galeriaDescripcion: galeriaDescripcionInicial,
 }: PaginaPrincipalProps) {
   const supabase = createClient()
 
+  const [heroTitulo, setHeroTitulo] = useState(heroTituloInicial)
+  const [sobreNosotrosTitulo, setSobreNosotrosTitulo] = useState(sobreNosotrosTituloInicial)
+  const [sobreNosotrosDescripcion, setSobreNosotrosDescripcion] = useState(sobreNosotrosDescripcionInicial)
+  const [galeriaTitulo, setGaleriaTitulo] = useState(galeriaTituloInicial)
+  const [galeriaDescripcion, setGaleriaDescripcion] = useState(galeriaDescripcionInicial)
   const [imagenPrincipal, setImagenPrincipal] = useState<string | null>(imagenPrincipalUrl)
   const [imagenSecundaria, setImagenSecundaria] = useState<string | null>(imagenSecundariaUrl)
   const [logos, setLogos] = useState<LogoItem[]>(logosIniciales)
@@ -58,9 +74,14 @@ export default function AdminPrincipalClient({
   const inputLogoRef = useRef<HTMLInputElement>(null)
 
   async function subirImagen(file: File, bucket: string): Promise<string | null> {
-    const ext = file.name.split('.').pop()
-    const nombre = `${Date.now()}.${ext}`
-    const { error } = await supabase.storage.from(bucket).upload(nombre, file)
+    const fileComprimido = await comprimirImagen(
+      file,
+      bucket === 'logos' ? 400 : 1200,  // logos más chicos
+      0.8
+    )
+
+    const nombre = `${Date.now()}.webp`
+    const { error } = await supabase.storage.from(bucket).upload(nombre, fileComprimido)
     if (error) return null
     const { data } = supabase.storage.from(bucket).getPublicUrl(nombre)
     return data.publicUrl
@@ -144,7 +165,16 @@ export default function AdminPrincipalClient({
     // Guardar imágenes principales
     await supabase
       .from('pagina_principal')
-      .update({ imagen_principal_url: imagenPrincipal, imagen_secundaria_url: imagenSecundaria, updated_at: new Date().toISOString() })
+      .update({
+        imagen_principal_url: imagenPrincipal,
+        imagen_secundaria_url: imagenSecundaria,
+        hero_titulo: heroTitulo,
+        sobre_nosotros_titulo: sobreNosotrosTitulo,
+        sobre_nosotros_descripcion: sobreNosotrosDescripcion,
+        galeria_titulo: galeriaTitulo,
+        galeria_descripcion: galeriaDescripcion,
+        updated_at: new Date().toISOString()
+      })
       .eq('id', (await supabase.from('pagina_principal').select('id').single()).data?.id)
 
     // Guardar FAQ
@@ -171,6 +201,60 @@ export default function AdminPrincipalClient({
           {mensaje && <p className={styles.mensaje}>{mensaje}</p>}
         </div>
 
+        <h2 className={styles.subtitulo}>Textos del sitio</h2>
+
+        <div className={styles.textosGrid}>
+          <div className={styles.campoTexto}>
+            <label className={styles.campoLabel}>Hero — Título principal</label>
+            <textarea
+              value={heroTitulo}
+              onChange={(e) => setHeroTitulo(e.target.value)}
+              className={styles.textarea}
+              rows={3}
+            />
+            <p className={styles.campoHint}>Presioná Enter para hacer un salto de línea</p>
+          </div>
+
+          <div className={styles.campoTexto}>
+            <label className={styles.campoLabel}>Sobre nosotros — Título</label>
+            <input
+              type="text"
+              value={sobreNosotrosTitulo}
+              onChange={(e) => setSobreNosotrosTitulo(e.target.value)}
+              className={styles.faqInput}
+            />
+          </div>
+
+          <div className={styles.campoTexto}>
+            <label className={styles.campoLabel}>Sobre nosotros — Descripción</label>
+            <textarea
+              value={sobreNosotrosDescripcion}
+              onChange={(e) => setSobreNosotrosDescripcion(e.target.value)}
+              className={styles.textarea}
+              rows={4}
+            />
+          </div>
+
+          <div className={styles.campoTexto}>
+            <label className={styles.campoLabel}>Galería — Título</label>
+            <input
+              type="text"
+              value={galeriaTitulo}
+              onChange={(e) => setGaleriaTitulo(e.target.value)}
+              className={styles.faqInput}
+            />
+          </div>
+
+          <div className={styles.campoTexto}>
+            <label className={styles.campoLabel}>Galería — Descripción</label>
+            <textarea
+              value={galeriaDescripcion}
+              onChange={(e) => setGaleriaDescripcion(e.target.value)}
+              className={styles.textarea}
+              rows={4}
+            />
+          </div>
+        </div>
         {/* Imagen principal */}
         <div className={styles.seccion}>
           <div

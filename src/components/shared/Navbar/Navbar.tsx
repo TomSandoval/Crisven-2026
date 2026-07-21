@@ -15,6 +15,7 @@ import { Categoria } from '@/types'
 const navLinks = [
   { label: 'Sobre nosotros', href: '/#sobre-nosotros' },
   { label: 'Contacto', href: '/#contacto' },
+  { label: 'Galeria', href: '/galeria' },
   { label: 'Productos', href: '/productos' },
 ]
 
@@ -24,7 +25,7 @@ interface NavbarProps {
 
 
 
-export default function Navbar({categorias}: NavbarProps) {
+export default function Navbar({ categorias }: NavbarProps) {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
   const isAdmin = pathname?.startsWith('/admin')

@@ -18,10 +18,18 @@ export default async function HomePage() {
     supabase.from('faq').select('*').order('orden'),
   ])
 
+  console.log(paginaPrincipal.imagen_principal_url)
   return (
     <>
-      <Hero imagenUrl={paginaPrincipal?.imagen_principal_url ?? null} />
-      <SobreNosotros imagenUrl={paginaPrincipal?.imagen_secundaria_url ?? null} />
+      <Hero
+        imagenUrl={paginaPrincipal?.imagen_principal_url ?? null}
+        titulo={paginaPrincipal?.hero_titulo ?? 'Somos Crisven Fábrica de ventanas para vehículos recreativos y carrocerías'}
+      />
+      <SobreNosotros
+        imagenUrl={paginaPrincipal?.imagen_secundaria_url ?? null}
+        titulo={paginaPrincipal?.sobre_nosotros_titulo ?? 'Calidad sobre todo'}
+        descripcion={paginaPrincipal?.sobre_nosotros_descripcion ?? ''}
+      />
       <Contacto />
       <Marcas logos={logos ?? []} />
       <FAQ items={faqItems ?? []} />

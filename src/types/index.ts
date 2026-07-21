@@ -77,6 +77,11 @@ export type PaginaPrincipal = {
   id: string
   imagen_principal_url: string | null
   imagen_secundaria_url: string | null
+  hero_titulo: string | null
+  sobre_nosotros_titulo: string | null
+  sobre_nosotros_descripcion: string | null
+  galeria_titulo: string | null
+  galeria_descripcion: string | null
   updated_at: string
 }
 

@@ -7,6 +7,7 @@ import { createClient } from '@/lib/supabase/client'
 import AdminPanelLayout from './AdminPanelLayout'
 import styles from './FormProducto.module.css'
 import { Categoria, Subcategoria, ProductoCompleto } from '@/types'
+import { comprimirImagen } from '@/lib/comprimirImagen'
 
 interface Props {
   categorias: Categoria[]
@@ -36,9 +37,12 @@ export default function FormProducto({ categorias, subcategorias, producto }: Pr
   const subcategoriasFiltradas = subcategorias.filter((s) => s.categoria_id === categoriaId)
 
   async function subirImagen(file: File): Promise<string | null> {
-    const ext = file.name.split('.').pop()
+    // Comprimimos antes de subir
+    const fileComprimido = await comprimirImagen(file)
+
+    const ext = 'webp'
     const nombre = `${Date.now()}.${ext}`
-    const { error } = await supabase.storage.from('productos').upload(nombre, file)
+    const { error } = await supabase.storage.from('productos').upload(nombre, fileComprimido)
     if (error) return null
     const { data } = supabase.storage.from('productos').getPublicUrl(nombre)
     return data.publicUrl

@@ -20,6 +20,9 @@ export default function DetalleProductoClient({ producto, similares }: Props) {
     `Hola! Me interesa el producto: ${producto.nombre}`
   )}`
 
+  console.log(similares)
+
+
   return (
     <div className={styles.page}>
 

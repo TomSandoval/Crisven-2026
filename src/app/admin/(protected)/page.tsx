@@ -23,6 +23,11 @@ export default async function AdminPage() {
       logos={logos ?? []}
       faqItems={faq ?? []}
       categoriasIniciales={categorias ?? []}
+      heroTitulo={paginaPrincipal?.hero_titulo ?? 'Somos Crisven Fábrica de ventanas para vehículos recreativos y carrocerías'}
+      sobreNosotrosTitulo={paginaPrincipal?.sobre_nosotros_titulo ?? 'Calidad sobre todo'}
+      sobreNosotrosDescripcion={paginaPrincipal?.sobre_nosotros_descripcion ?? ''}
+      galeriaTitulo={paginaPrincipal?.galeria_titulo ?? 'Calidad sobre todo'}
+      galeriaDescripcion={paginaPrincipal?.galeria_descripcion ?? ''}
     />
   )
 }
