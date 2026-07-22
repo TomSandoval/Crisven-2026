@@ -4,9 +4,10 @@ import styles from './Hero.module.css'
 
 interface HeroProps {
   imagenUrl: string | null
+  titulo: string
 }
 
-export default function Hero({ imagenUrl }: HeroProps) {
+export default function Hero({ imagenUrl, titulo }: HeroProps) {
   return (
     <section className={styles.hero}>
       <div className={styles.bgWrapper}>
@@ -25,10 +26,7 @@ export default function Hero({ imagenUrl }: HeroProps) {
       </div>
 
       <div className={styles.content}>
-        <h1 className={styles.title}>
-          Somos Crisven<br />
-          Fábrica de ventanas para vehículos recreativos y carrocerías
-        </h1>
+        <h1 className={styles.title}>{titulo}</h1>
         <Link href="/productos" className={styles.cta}>
           Conoce nuestros productos
         </Link>

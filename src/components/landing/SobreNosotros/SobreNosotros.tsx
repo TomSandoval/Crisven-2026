@@ -4,19 +4,17 @@ import styles from './SobreNosotros.module.css'
 
 interface SobreNosotrosProps {
   imagenUrl: string | null
+  titulo: string
+  descripcion: string
 }
 
-export default function SobreNosotros({ imagenUrl }: SobreNosotrosProps) {
+export default function SobreNosotros({ imagenUrl, titulo, descripcion }: SobreNosotrosProps) {
   return (
     <section id="sobre-nosotros" className={styles.section}>
       <div className={styles.container}>
         <p className={styles.eyebrow}>Sobre nosotros</p>
-        <h2 className={styles.title}>Calidad sobre todo</h2>
-        <p className={styles.text}>
-          En Crisven, buscamos crecer junto a nuestros clientes, ofreciendo la mejor calidad al
-          mejor precio. Contamos con un amplio stock y diseñamos ventanas especiales según sus
-          necesidades.
-        </p>
+        <h2 className={styles.title}>{titulo}</h2>
+        <p className={styles.text}>{descripcion}</p>
       </div>
 
       <div className={styles.imageWrapper}>
@@ -31,7 +29,7 @@ export default function SobreNosotros({ imagenUrl }: SobreNosotrosProps) {
           <div className={styles.imagePlaceholder} />
         )}
         <div className={styles.imageOverlay} />
-        <Link href="/#contacto" className={styles.imageLink}>
+        <Link href="/galeria" className={styles.imageLink}>
           Conocé más
         </Link>
       </div>

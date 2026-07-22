@@ -20,6 +20,7 @@ export default function DetalleProductoClient({ producto, similares }: Props) {
     `Hola! Me interesa el producto: ${producto.nombre}`
   )}`
 
+
   return (
     <div className={styles.page}>
 
