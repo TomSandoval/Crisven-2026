@@ -28,6 +28,7 @@ export default function FormProducto({ categorias, subcategorias, producto }: Pr
   const [nuevaSubcategoria, setNuevaSubcategoria] = useState('')
   const [subcategoriaId, setSubcategoriaId] = useState(producto?.subcategoria_id ?? '')
   const [descripcion, setDescripcion] = useState(producto?.descripcion ?? '')
+  const [destacado, setDestacado] = useState(producto?.destacado ?? false)
   const [imagenes, setImagenes] = useState<{ id?: string; url: string; es_principal: boolean }[]>(
     producto?.producto_imagenes.map((img) => ({ id: img.id, url: img.imagen_url, es_principal: img.es_principal })) ?? []
   )
@@ -140,6 +141,7 @@ export default function FormProducto({ categorias, subcategorias, producto }: Pr
         categoria_id: categoriaFinal || null,
         subcategoria_id: subcategoriaFinal || null,
         descripcion: descripcion || null,
+        destacado
       }).eq('id', producto.id)
 
       await supabase.from('producto_imagenes').delete().eq('producto_id', producto.id)
@@ -261,6 +263,18 @@ export default function FormProducto({ categorias, subcategorias, producto }: Pr
             onChange={(e) => setDescripcion(e.target.value)}
             className={styles.input}
           />
+        </div>
+
+        <div className={styles.destacadoWrapper}>
+          <label className={styles.destacadoLabel}>
+            <input
+              type="checkbox"
+              checked={destacado}
+              onChange={(e) => setDestacado(e.target.checked)}
+              className={styles.checkbox}
+            />
+            Mostrar en la página principal como producto destacado
+          </label>
         </div>
 
         <p className={styles.fotosLabel}>Fotos</p>

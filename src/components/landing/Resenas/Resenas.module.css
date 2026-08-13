@@ -1,0 +1,74 @@
+.section {
+  background-color: #000;
+  padding-bottom: 80px;
+  margin-top: 30px;
+}
+
+/* Scroll wrapper */
+.scrollWrapper {
+  overflow-x: auto;
+  padding: 0 48px 16px;
+  scrollbar-width: none;
+}
+
+.scrollWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+}
+
+/* Tarjeta */
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  width: 380px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.nombre {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+}
+
+/* Estrellas */
+.estrellas {
+  display: flex;
+  gap: 2px;
+}
+
+.estrella {
+  font-size: 16px;
+  color: #f5a623;
+}
+
+.estrellaVacia {
+  font-size: 16px;
+  color: #ddd;
+}
+
+.texto {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .scrollWrapper {
+    padding: 0 24px 16px;
+  }
+}

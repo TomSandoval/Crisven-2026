@@ -1,0 +1,178 @@
+.section {
+  background-color: #000;
+  margin-top: 30px;
+}
+
+.header {
+  max-width: 100%;
+  padding: 40px 48px 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 16px;
+}
+
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.nombre {
+  font-size: clamp(24px, 3.5vw, 44px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+/* Flechas */
+.flechas {
+  display: flex;
+  gap: 8px;
+  padding-bottom: 4px;
+}
+
+.flecha {
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, color 0.15s;
+  line-height: 1;
+  border-radius: 4px;
+}
+
+.flecha:hover:not(:disabled) {
+  border-color: #fff;
+  color: #fff;
+}
+
+.flecha:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+/* Grid de productos */
+.grid {
+  max-width: 100vw  ;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  cursor: grab;
+  user-select: none;
+}
+
+.grid:active {
+  cursor: grabbing;
+}
+
+/* Tarjeta */
+.card {
+  display: flex;
+  padding: 12px;
+  flex-direction: column;
+  background-color: #fff;
+  text-decoration: none;
+  border-radius: 14px;
+  justify-content: space-around;
+
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: contain;
+  transition: transform 0.35s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #1a1a1a;
+}
+
+.nombre {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* Puntos */
+.puntos {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 36px;
+}
+
+.punto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  padding: 0;
+}
+
+.punto:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.puntoActivo {
+  background-color: #fff;
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 60px 24px 32px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .grid {
+    padding: 0 24px;
+  }
+}

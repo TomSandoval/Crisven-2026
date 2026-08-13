@@ -19,6 +19,7 @@ export default function AdminSidebar() {
   const isPrincipal = pathname === '/admin'
   const isProductos = pathname.startsWith('/admin/productos')
   const isGaleria = pathname.startsWith('/admin/galeria')
+  const isResenas = pathname.startsWith('/admin/resenas')
 
   return (
     <aside className={styles.sidebar}>
@@ -47,6 +48,15 @@ export default function AdminSidebar() {
           + Agregar producto
         </Link>
       </div>
+      <Link
+        href="/admin/resenas"
+        className={`${styles.link} ${isResenas ? styles.linkActivo : ''}`}
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+        Reseñas
+      </Link>
       <Link
         href="/admin/galeria"
         className={`${styles.link} ${isGaleria ? styles.linkActivo : ''}`}

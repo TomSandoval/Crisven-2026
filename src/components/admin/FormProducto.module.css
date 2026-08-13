@@ -46,6 +46,28 @@
   cursor: not-allowed;
 }
 
+.destacadoWrapper {
+  grid-column: 1 / -1;
+  padding: 12px 0;
+  border-top: 1px solid #e5e5e5;
+}
+
+.destacadoLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #444;
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #000;
+}
+
 /* Fotos */
 .fotosLabel {
   font-size: 15px;
