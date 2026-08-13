@@ -51,9 +51,9 @@ input, textarea {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #000; }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+::-webkit-scrollbar { width: 2px; height: 5px;}
+::-webkit-scrollbar-track { background: #333; }
+::-webkit-scrollbar-thumb { background: #fff; border-radius: 3px; }
 
 @theme inline {
   --animate-marquee: marquee var(--duration) infinite linear;

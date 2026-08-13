@@ -40,6 +40,7 @@ export type Producto = {
   categoria_id: string | null
   subcategoria_id: string | null
   orden: number
+  destacado: boolean
   created_at: string
 }
 
@@ -55,6 +56,20 @@ export type ProductoEnGrilla = Producto & {
   categorias: Categoria | null
   subcategorias: Subcategoria | null
   imagen_principal: ProductoImagen | null
+}
+
+// =============================================
+// RESEÑA
+// =============================================
+
+
+export type Resena = {
+  id: string
+  nombre: string
+  texto: string
+  estrellas: number
+  orden: number
+  created_at: string
 }
 
 // =============================================

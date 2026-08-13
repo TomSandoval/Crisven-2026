@@ -1,0 +1,190 @@
+.page {
+  width: 100%;
+  max-width: 700px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.titulo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+
+.btnAgregar {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.15s;
+}
+
+.btnAgregar:hover {
+  background-color: #333;
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.cardBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding: 6px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  font-family: inherit;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+
+.input:focus {
+  border-color: #000;
+}
+
+.input::placeholder {
+  color: #bbb;
+  font-weight: 400;
+}
+
+/* Estrellas interactivas */
+.estrellas {
+  display: flex;
+  gap: 4px;
+}
+
+.estrella {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #ddd;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.estrella:hover,
+.estrellaActiva {
+  color: #f5a623;
+}
+
+.textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding: 6px 0;
+  font-size: 14px;
+  color: #555;
+  font-family: inherit;
+  outline: none;
+  width: 100%;
+  resize: none;
+  transition: border-color 0.15s;
+  line-height: 1.6;
+}
+
+.textarea:focus {
+  border-color: #000;
+}
+
+.textarea::placeholder {
+  color: #bbb;
+}
+
+.btnEliminar {
+  width: 36px;
+  height: 36px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.15s;
+}
+
+.btnEliminar:hover {
+  background-color: #e53e3e;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: #bbb;
+  font-size: 14px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.mensaje {
+  font-size: 13px;
+  color: #25a244;
+  font-weight: 500;
+}
+
+.btnGuardar {
+  background-color: #25a244;
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.btnGuardar:hover {
+  background-color: #1e8f3b;
+}
+
+.btnGuardar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
